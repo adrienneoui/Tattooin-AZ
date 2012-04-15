@@ -1,0 +1,21 @@
+.LFloat{
+  float: left;
+}
+
+.LFloat div {
+  line-height: 30px;
+}
+#loading{
+  display: none;
+}
+.lastUpLoaded{
+  margin: 0;
+  padding: 0;
+}
+.lastUpLoaded li{
+  margin-bottom: 20px;
+}
+.lastUpLoaded li.imgLabel{
+  margin-left: 20px;
+  margin-bottom: 0px;
+}
