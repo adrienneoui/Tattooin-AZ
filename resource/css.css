@@ -61,6 +61,7 @@ p {
   margin: 0px auto;
   display: block;
   font-family: Sans-Serif;
+  position: relative;
 }
 
 h2{
@@ -138,6 +139,20 @@ p.sig{
 }
 .column div{
   line-height: 35px;
+}
+.contact{}
+.contact .error{
+  padding: 4px;
+  background: #ff0;
+  border: 2px solid #fa0;
+  border-radius: 4px;
+  line-height: 1.75;
+  color:#f00;
+  text-align: center;
+  display: none;
+  margin:0 auto;
+  width: 300px;
+
 }
 .contactLeft{
   width: 340px;
