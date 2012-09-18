@@ -102,9 +102,23 @@ jQ(function(){
         }
       });
 
+      jQ('#contactForm').find('select').each(function(){
+        var $this = jQ(this);
+
+        $this.focus(function(){
+          $this.css('color','#000');
+        });
+        if($this.val() === '0'){
+          $this.css('color','#f00');
+        }
+      });
+
       if($error.text().length > 0){
         $error.slideDown();
+        return false;
       }
+
+      jQ('#contactForm').submit();
 
     }
   }

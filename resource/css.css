@@ -32,7 +32,6 @@ a:hover, a:active {
 }
 a, input, select, textarea {
   outline: 0;
-  resize: none;
 }
 ol, ul {
 	list-style: none outside;

@@ -4,7 +4,7 @@ include_once './resource/var.php';
 <h2>Contact Dave</h2>
 <div class="contact">
   <div class="error"></div>
-  <form id="contactForm" action="">
+  <form id="contactForm" method="post" action="">
     <div class="column contactLeft">
       <div><label for="name">Full Name:</label></div>
       <div><label for="email">Contact Email:</label></div>
@@ -15,7 +15,7 @@ include_once './resource/var.php';
       <div><label for="message">Message to Dave:</label></div>
     </div>
     <div class="column contactRight">
-      <div><input type="text" id="name" name="name" /></div>
+      <div><input type="text" id="name" name="name" value="<?= $_POST['name']; ?>" /></div>
       <div><input type="text" id="email" name="email" /></div>
       <div><input type="text" id="phone" name="phone" /></div>
       <div>
@@ -53,7 +53,7 @@ include_once './resource/var.php';
     <div class="buttons">
       <input type="button" value="Submit" />
       <input type="button" value="Clear" />
-      <div class="mandatory">all fields are mandatory</div>
+      <div class="mandatory">some fields are mandatory</div>
     </div>
   </form>
 </div>

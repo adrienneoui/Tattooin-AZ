@@ -4,7 +4,8 @@
       'Word of mouth',
       'Faceboook',
       'MySpace',
-      'This web site'
+      'This web site',
+      'Other'
   );
   $selectFistTattoo = array(
       'Yea and I\'m excited',
