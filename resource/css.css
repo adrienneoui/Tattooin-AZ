@@ -140,7 +140,7 @@ p.sig{
   line-height: 35px;
 }
 .contact{}
-.contact .error{
+.contact .globalError{
   padding: 4px;
   background: #ff0;
   border: 2px solid #fa0;
@@ -148,11 +148,13 @@ p.sig{
   line-height: 1.75;
   color:#f00;
   text-align: center;
-  display: none;
   margin:0 auto;
   width: 300px;
-
 }
+.contact .error{
+  color: #f00;
+}
+
 .contactLeft{
   width: 340px;
   text-align: right;

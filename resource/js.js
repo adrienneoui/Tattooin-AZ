@@ -64,75 +64,37 @@ jQ(function(){
       });
     },
     contactForm: function() {
-      var $error = jQ(document).find('.contact .error');
 
-      jQ('#contactForm').find('input').each(function(){
+      var formData = {};
+
+      jQ('#contactForm').find('input[type=text], select').each(function(){
         var $this = jQ(this);
-
-        $this.focus(function(){
-          $this.val('').css('color','#000');
-          $error.slideUp(function(){
-            $error.find('div').replaceWith('');
-          });
-        });
-
-        if($this.attr('id') === 'name') {
-          if($this.val() === '' || $this.val().length === 0){
-            $this.val('Your Name').css('color','#f00');
-          }
-        }
-
-        if($this.attr('id') === 'email') {
-          if($this.val() === '' || $this.val().length === 0){
-            $this.val('Email Address').css('color','#f00');
-          }else if($this.val().search(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i) === -1){
-            $error.append('<div>Your email address appears to be invalid.</div>');
-          }
-        }
-
-        if($this.attr('id') === 'phone') {
-          var phoneNum = $this.val();
-          phoneNum = phoneNum.replace(/\(|\)|-|\.|_/gi, '');
-
-          if($this.val() === '' || $this.val().length === 0){
-            $this.val('Phone Number w/ Area Code').css('color','#f00');
-          }else if(phoneNum.search(/[0-9]{10,11}/ig) === -1){
-            $error.append('<div>Your phone number appears to be invalid.</div>');
-          }
-        }
+        formData[$this.attr('id')] = $this.val();
       });
 
-      jQ('#contactForm').find('select').each(function(){
-        var $this = jQ(this);
-
-        $this.focus(function(){
-          $this.css('color','#000');
-        });
-        if($this.val() === '0'){
-          $this.css('color','#f00');
+      jQ.ajax({
+        url: './includes/contact.php',
+        type: 'POST',
+        data: {data: JSON.stringify(formData)},
+        dataType: 'html',
+        success: function(data){
+          jQ('#content').html(data);
+          console.log('done');
         }
       });
-
-      if($error.text().length > 0){
-        $error.slideDown();
-        return false;
-      }
-
-      jQ('#contactForm').submit();
-
     }
   }
 
   site.moreThumbs();
 
   if(jQ('#contactForm').length >= 1){
-    jQ('#contactForm').delegate('.buttons input', 'click', function(event){
+    jQ('#contactForm').find('.buttons input').on('click', function(event){
       event.preventDefault;
       site.contactForm();
     });
   }
 
-  jQ('.thumbNail a').on('click', function(event){
+  jQ(document).find('.thumbNail a').on('click', function(event){
     event.preventDefault;
     site.artShow(jQ(this));
   });

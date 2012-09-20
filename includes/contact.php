@@ -1,9 +1,22 @@
 <?php
-include_once './resource/var.php';
+if(!empty($_POST)){
+//  $formData and $formCSS is from this include
+  include_once './formvalidate.php';
+  include_once '../resource/var.php';
+}else{
+  include_once './resource/var.php';
+}
 ?>
 <h2>Contact Dave</h2>
 <div class="contact">
-  <div class="error"></div>
+<?php if(!empty($formData->global)){ ?>
+  <div class="globalError">
+  <?php
+  foreach($formData->global as $error){
+    echo $error;
+  } ?>
+  </div>
+<?php } ?>
   <form id="contactForm" method="post" action="">
     <div class="column contactLeft">
       <div><label for="name">Full Name:</label></div>
@@ -14,10 +27,17 @@ include_once './resource/var.php';
       <div><label for="kind">What kind of tattoo are you wanting:</label></div>
       <div><label for="message">Message to Dave:</label></div>
     </div>
+
     <div class="column contactRight">
-      <div><input type="text" id="name" name="name" value="<?= $_POST['name']; ?>" /></div>
-      <div><input type="text" id="email" name="email" /></div>
-      <div><input type="text" id="phone" name="phone" /></div>
+      <div><input type="text" id="name" name="name" value="<?=
+        (empty($formData->name)) ? '' : $formData->name ;
+      ?>" class="<?=  (empty($formCSS['name'])) ? '' : $formCSS['name'] ?>" /></div>
+      <div><input type="text" id="email" name="email" value="<?=
+        (empty($formData->email)) ? '' : $formData->email ;
+      ?>" class="<?=  (empty($formCSS['email'])) ? '' : $formCSS['email'] ?>" /></div>
+      <div><input type="text" id="phone" name="phone" value="<?=
+        (empty($formData->phone)) ? '' : $formData->phone ;
+      ?>" class="<?=  (empty($formCSS['phone'])) ? '' : $formCSS['phone'] ?>" /></div>
       <div>
         <select id="hear" name="hear">
           <option value="0" selected="selected">Choose one</option>

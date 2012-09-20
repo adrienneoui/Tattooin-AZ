@@ -8,9 +8,9 @@
       'Other'
   );
   $selectFistTattoo = array(
-      'Yea and I\'m excited',
-      'Yea and I\'m scared',
-      'Nah I\'m a collector',
+      'Yea and I am excited',
+      'Yea and I am scared',
+      'Nah I am a collector',
       'Nah I need a cover up'
   );
   $selectKind = array(
