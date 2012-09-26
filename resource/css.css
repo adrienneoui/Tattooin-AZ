@@ -154,6 +154,11 @@ p.sig{
 .contact .error{
   color: #f00;
 }
+.contactConfirmation {
+  text-align: center;
+  font-size: 26px;
+  margin: 50px 0 300px 0;
+}
 
 .contactLeft{
   width: 340px;
@@ -185,6 +190,11 @@ p.sig{
 .buttons input{
   padding: 5px;
   cursor: pointer;
+  border-radius: 4px;
+  width: 100px;
+  background:#831618;
+  color:#fff;
+  font-weight: bold;
 }
 .mandatory{
   margin-right: 10px;

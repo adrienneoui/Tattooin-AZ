@@ -1,4 +1,5 @@
 <?php
+$success = false;
 if(!empty($_POST)){
 //  $formData and $formCSS is from this include
   include_once './formvalidate.php';
@@ -6,6 +7,7 @@ if(!empty($_POST)){
 }else{
   include_once './resource/var.php';
 }
+
 ?>
 <h2>Contact Dave</h2>
 <div class="contact">
@@ -16,7 +18,15 @@ if(!empty($_POST)){
     echo $error;
   } ?>
   </div>
-<?php } ?>
+<?php }
+  if($success){
+  ?>
+  <div class="contactConfirmation">
+    Congrats your email has been sent.
+  </div>
+  <?php
+  }else{
+?>
   <form id="contactForm" method="post" action="">
     <div class="column contactLeft">
       <div><label for="name">Full Name:</label></div>
@@ -39,41 +49,62 @@ if(!empty($_POST)){
         (empty($formData->phone)) ? '' : $formData->phone ;
       ?>" class="<?=  (empty($formCSS['phone'])) ? '' : $formCSS['phone'] ?>" /></div>
       <div>
-        <select id="hear" name="hear">
-          <option value="0" selected="selected">Choose one</option>
+        <select id="hear" name="hear" class="<?=
+          ($formCSS['hear'] === 'error') ? ' error' : '' ;
+        ?>">
+          <option value="0">Choose one</option>
           <?php
             foreach($selectHeard as $value){ ?>
-              <option value="<?= preg_replace("/ /", "-", strtolower($value)); ?>"><?= $value; ?></option>
+              <option value="<?= preg_replace("/ /", "-", strtolower($value)); ?>"<?php
+                if(preg_replace("/ /", "-", strtolower($value)) === $formData->hear){
+                  echo ' selected="selected"';
+                }
+              ?>><?= $value; ?></option>
             <?php }
           ?>
         </select>
       </div>
       <div>
-        <select id="first" name="first">
-          <option value="0" selected="selected">Choose one</option>
+        <select id="first" name="first" class="<?=
+          ($formCSS['first'] === 'error') ? ' error' : '' ;
+        ?>">
+          <option value="0">Choose one</option>
           <?php
             foreach($selectFistTattoo as $value){ ?>
-              <option value="<?= preg_replace("/ /", "-", strtolower($value)); ?>"><?= $value; ?></option>
+              <option value="<?= preg_replace("/ /", "-", strtolower($value)); ?>"<?php
+                if(preg_replace("/ /", "-", strtolower($value)) === $formData->first){
+                  echo ' selected="selected"';
+                }
+              ?>><?= $value; ?></option>
             <?php }
           ?>
         </select>
       </div>
       <div>
-        <select id="kind" name="kind">
-          <option value="0" selected="selected">Choose one</option>
+        <select id="kind" name="kind" class="<?=
+          ($formCSS['kind'] === 'error') ? ' error' : '' ;
+        ?>">
+          <option value="0">Choose one</option>
           <?php
             foreach($selectKind as $value){ ?>
-              <option value="<?= preg_replace("/ /", "-", strtolower($value)); ?>"><?= $value; ?></option>
+              <option value="<?= preg_replace("/ /", "-", strtolower($value)); ?>"<?php
+                if(preg_replace("/ /", "-", strtolower($value)) === $formData->kind){
+                  echo ' selected="selected"';
+                }
+              ?>><?= $value; ?></option>
             <?php }
           ?>
         </select>
       </div>
-      <div><textarea id="message" name="message" class="messageBox"></textarea></div>
+      <div>
+        <textarea id="message" name="message" class="messageBox"><?= (empty($formData->message)) ? '' : $formData->message ; ?></textarea>
+      </div>
     </div>
     <div class="buttons">
-      <input type="button" value="Submit" />
-      <input type="button" value="Clear" />
+      <input type="button" value="SUBMIT" />
+      <input type="button" value="CLEAR" />
       <div class="mandatory">some fields are mandatory</div>
     </div>
   </form>
+  <?php } ?>
 </div>

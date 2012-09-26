@@ -64,22 +64,36 @@ jQ(function(){
       });
     },
     contactForm: function() {
+      jQ(document).on("click", "#contactForm .buttons input", function(event){
+        event.preventDefault;
+        if(jQ(this).val() === 'SUBMIT'){
+          var formData = {};
 
-      var formData = {};
+          jQ('#contactForm').find('input[type=text], select, textarea').each(function(){
+            var $this = jQ(this);
+            formData[$this.attr('id')] = $this.val();
+          });
 
-      jQ('#contactForm').find('input[type=text], select').each(function(){
-        var $this = jQ(this);
-        formData[$this.attr('id')] = $this.val();
-      });
-
-      jQ.ajax({
-        url: './includes/contact.php',
-        type: 'POST',
-        data: {data: JSON.stringify(formData)},
-        dataType: 'html',
-        success: function(data){
-          jQ('#content').html(data);
-          console.log('done');
+          jQ.ajax({
+            url: './includes/contact.php',
+            type: 'POST',
+            data: {data: JSON.stringify(formData)},
+            dataType: 'html',
+            success: function(data){
+              jQ('#content').html(data).on("focus",  "input[type=text], select", function(){
+                var $this = jQ(this);
+                $this.focus(function(){
+                  if($this.hasClass('error')){
+                    $this.removeClass('error').val('');
+                  }
+                });
+              });
+            }
+          });
+        }else{
+          jQ('#content').find("input[type=text], select, textarea").each(function(){
+            jQ(this).removeClass('error').val('');
+          });
         }
       });
     }
@@ -88,10 +102,7 @@ jQ(function(){
   site.moreThumbs();
 
   if(jQ('#contactForm').length >= 1){
-    jQ('#contactForm').find('.buttons input').on('click', function(event){
-      event.preventDefault;
-      site.contactForm();
-    });
+    site.contactForm();
   }
 
   jQ(document).find('.thumbNail a').on('click', function(event){

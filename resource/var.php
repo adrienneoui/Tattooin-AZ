@@ -18,6 +18,8 @@
       'Something meaningfull',
       'I have a drawing',
       'I want you to draw one up',
+      'Continue existing work',
+      'Color',
       'Tribal',
       'Portrait',
       'Black and gray',
