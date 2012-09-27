@@ -23,9 +23,19 @@ jQ(function(){
       t=setTimeout("site.runCluster("+rand+")", 10 * 1000);
     },
     artShow: function(el){
-      var data = JSON.parse(el.attr('js-data'));
-      jQ('#imageViewer').find('img').attr('src','./resource/artwork/'+ data.cat +'/'+ data.img);
-      jQ('#imgName').text(data.name);
+      var data = el.data("image");
+
+      if(data.name !== jQ('#imgName').text()){
+        jQ("#thumbsMove").find('.selected').removeClass('selected');
+
+        jQ('#imageViewer').find('img').fadeOut(function(){
+          jQ(this).attr('src','./resource/artwork/'+ data.cat +'/'+ data.img).delay(200).fadeIn();
+          el.addClass('selected');
+        });
+        jQ('#imgName').fadeOut(function(){
+          jQ(this).text(data.name).delay(200).fadeIn();
+        });
+      }
     },
     moreThumbs: function(){
       var $thumbs = jQ('#thumbs').find('.thumbNail'),

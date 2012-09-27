@@ -86,7 +86,9 @@ function _makeThumb($key, $img, $activeCat){
   );
   ?>
   <div class="thumbNail">
-    <a href="javascript:void(0);" js-data='<?= json_encode($jsData); ?>'>
+    <a href="javascript:void(0);" data-image='<?= json_encode($jsData); ?>' class="<?=
+      ($key === 0) ? 'selected' : '' ;
+      ?>">
       <img src="./resource/artwork/thumbs/<?= $activeCat; ?>/<?=
       $img->image; ?>" alt="<?=
       $img->name; ?>" title="<?=
