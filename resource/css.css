@@ -77,37 +77,35 @@ h2{
 a.navImg{
   display: block;
   float: left;
-  height: 210px;
+  height: 208px;
   text-align: center;
   font-family: 'Miltonian Tattoo', cursive;
   font-size: 24px;
   color: #000;
   text-decoration: none;
+  margin: 2px 5px 0 5px;
 }
 a.home{
   background: transparent url(./img/home.png) no-repeat left top;
   width: 90px;
-  margin-right: 5px;
+  margin-left: 0;
 }
 a.tattoos{
   background: transparent url(./img/tattoos.png) no-repeat left top;
   width: 160px;
-  margin:0px 5px;
 }
 a.merch{
   background: transparent url(./img/merch.png) no-repeat left top;
   width: 160px;
-  margin:0px 5px;
 }
 a.contact{
   background: transparent url(./img/contact.png) no-repeat left top;
   width: 160px;
-  margin:0px 5px;
 }
 a.links{
   background: transparent url(./img/links.png) no-repeat left top;
   width: 90px;
-  margin-left:5px;
+  margin-right:0;
 }
 .nav a.active {
   cursor: default;
