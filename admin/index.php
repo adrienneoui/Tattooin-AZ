@@ -1,17 +1,19 @@
 <?php
-//phpinfo();
-//die;
+  session_start();
 
-  $upLoadedFeed = file_get_contents("../data/last-up-loaded.json");
-  $upLoadedFeed = json_decode($upLoadedFeed, true);
-  $errorFeed = file_get_contents("../data/errors.json");
-  $errorFeed = json_decode($errorFeed, true);
+  $session = ($_SESSION['active']) ? true : false ;
 
-  $allNew = '../data/errors.json';
-  $fh = fopen($allNew, 'w') or die("can't open file");
-  fwrite($fh, '[]');
-  fclose($fh);
+  if($session){
+    $upLoadedFeed = file_get_contents("../data/last-up-loaded.json");
+    $upLoadedFeed = json_decode($upLoadedFeed, true);
+    $errorFeed = file_get_contents("../data/errors.json");
+    $errorFeed = json_decode($errorFeed, true);
 
+    $allNew = '../data/errors.json';
+    $fh = fopen($allNew, 'w') or die("can't open file");
+    fwrite($fh, '[]');
+    fclose($fh);
+  }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
@@ -37,6 +39,22 @@
     <script type="text/javascript" src="./admin.js"></script>
   </head>
   <body>
+<?php
+  if(!$session){
+    if($_REQUEST['mess'] === 'true'){
+?>
+    <div>It's borked! </div>
+<?php
+    }
+?>
+    <form action="./signin.php" method="post">
+      <div>name: <input type="input" id="name" name="name" valu="" /></div>
+      <div>password: <input type="password" id="pass" name="pass" valu="" /></div>
+      <div><input type="submit" value="Go" /></div>
+    </form>
+<?php
+  }else{
+?>
     <form id="imageUpload" method="post" enctype="multipart/form-data" action="./uploader.php">
       <fieldset>
         <legend>Uploader</legend>
@@ -121,5 +139,6 @@
     }
     ?>
     </div>
+<?php } ?>
   </body>
 </html>
