@@ -11,9 +11,9 @@
   <body>
     <div class="shell">
       <?php include_once './includes/header.php';?>
-        <div id="content">
-          <?php include_once './includes/'. $pageID .'.php';?>
-        </div>
+      <div id="content">
+      <?php include_once './includes/'. $pageID .'.php';?>
+      </div>
       <?php include_once './includes/footer.php';?>
     </div>
   </body>
