@@ -15,6 +15,6 @@
     }
   ?>
 </div>
-<div class="footer">
+<footer class="footer">
   <p><a href="http://www.tattooin-az.com">www.tattooin-az.com</a> | by: Dave | All images are personal property of artist.</p>
-</div>
+</footer>
