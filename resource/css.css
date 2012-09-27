@@ -23,11 +23,11 @@ body {
   background: #222;
 }
 a:link, a:visited {
-  color: #831618;
+  color: #c00;
   text-decoration: none;
 }
 a:hover, a:active {
-  color: #4b5726;
+  color: #896;
   text-decoration: underline;
 }
 a, input, select, textarea {
@@ -48,7 +48,8 @@ caption {
 
 /* ======================================== */
 p {
-  margin: 0px 10px 10px 0px
+  margin: 0px 10px 10px 0px;
+  line-height: 1.25
 }
 
 .shell{
@@ -125,6 +126,9 @@ a.links{
 }
 .bodycopy{
   margin-left: 244px;
+}
+.bodycopy p {
+  letter-spacing: 2px;
 }
 
 p.sig{
@@ -351,6 +355,8 @@ a.my-photos{
   text-align: center;
 }
 .largeCol img{
+  border: 1px solid #4B5726;
+  box-shadow: 0 0 20px #4B5726,  0 0 20px #4B5726,  0 0 20px #4B5726;
 }
 .thumbNail{
   float: left;
@@ -359,9 +365,14 @@ a.my-photos{
   margin: 4px;
   overflow: hidden;
   border: 1px solid #fff;
+  background: #4B5726;
+}
+.thumbNail .selected{
+  opacity: .25;
 }
 .thumbNail.blank{
-  border:none;
+  border: 1px solid transparent;
+  background:transparent;
 }
 .nextPrev{
   clear:left;

@@ -4,9 +4,7 @@ $errors = array();
 $imgDir = '';
 $validExt = array(
     'jpg',
-    'jpeg',
-    'gif',
-    'png'
+    'jpeg'
 );
 
 $imgTypes = $_FILES['img']['type'];
@@ -80,43 +78,17 @@ function imageManipulation($currentImg, $newLoc, $ext){
   }else if($height > $width){
     if($height > 460){
       $newHeight = 460;
-       $newWidth= $width / $height * 460;
+      $newWidth= $width / $height * 460;
     }
   }
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      $src = imagecreatefromjpeg($currentImg);
-      break;
-    case 'gif':
-      $src = imagecreatefromgif($currentImg);
-      break;
-    case 'png':
-      $src = imagecreatefrompng($currentImg);
-      break;
-    default:
-      $src = 'go';
-  }
+  $src = imagecreatefromjpeg($currentImg);
 
   $dst = imagecreatetruecolor($newWidth, $newHeight);
 
   imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      imagejpeg($dst, $newLoc, 60);
-      break;
-    case 'gif':
-      imagegif($dst, $newLoc);
-      break;
-    case 'png':
-      imagepng($dst, $newLoc, 4);
-      break;
-    default:
-      $src = 'go';
-  }
+  imagejpeg($dst, $newLoc, 60);
 
   setWaterMark($newLoc, $ext);
 
@@ -126,20 +98,8 @@ function imageManipulation($currentImg, $newLoc, $ext){
 function setWaterMark($currentImg, $ext){
   $watermark = '../resource/img/watermark.png';
   $watermark = imagecreatefrompng($watermark);
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      $src = imagecreatefromjpeg($currentImg);
-      break;
-    case 'gif':
-      $src = imagecreatefromgif($currentImg);
-      break;
-    case 'png':
-      $src = imagecreatefrompng($currentImg);
-      break;
-    default:
-      $src = 'go';
-  }
+
+  $src = imagecreatefromjpeg($currentImg);
 
   $marge_right = 10;
   $marge_bottom = 10;
@@ -148,20 +108,7 @@ function setWaterMark($currentImg, $ext){
 
   imagecopy($src, $watermark, imagesx($src) - $sx - $marge_right, imagesy($src) - $sy - $marge_bottom, 0, 0, imagesx($watermark), imagesy($watermark));
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      imagejpeg($src, $currentImg);
-      break;
-    case 'gif':
-      imagegif($src, $currentImg);
-      break;
-    case 'png':
-      imagepng($src, $currentImg);
-      break;
-    default:
-      $src = 'go';
-  }
+  imagejpeg($src, $currentImg);
   imagedestroy($src);
 }
 
@@ -187,72 +134,20 @@ function thumbManipulation($currentImg, $newLoc, $ext){
     }
   }
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      $src = imagecreatefromjpeg($currentImg);
-      break;
-    case 'gif':
-      $src = imagecreatefromgif($currentImg);
-      break;
-    case 'png':
-      $src = imagecreatefrompng($currentImg);
-      break;
-    default:
-      $src = 'go';
-  }
+  $src = imagecreatefromjpeg($currentImg);
 
   $dst = imagecreatetruecolor($thumbWidth, $thumbHeight);
   imagecopyresampled($dst, $src, 0, 0, $left, $top, $thumbWidth, $thumbHeight, $width, $height);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      imagejpeg($dst, $newLoc, 60);
-      break;
-    case 'gif':
-      imagegif($dst, $newLoc);
-      break;
-    case 'png':
-      imagepng($dst, $newLoc, 4);
-      break;
-    default:
-      $src = 'go';
-  }
+  imagejpeg($dst, $newLoc, 60);
 
   $dst = imagecreatetruecolor(50, 50);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      $src = imagecreatefromjpeg($newLoc);
-      break;
-    case 'gif':
-      $src = imagecreatefromgif($newLoc);
-      break;
-    case 'png':
-      $src = imagecreatefrompng($newLoc);
-      break;
-    default:
-      $src = 'go';
-  }
+  $src = imagecreatefromjpeg($newLoc);
 
   imagecopy($dst, $src, 0, 0, 0, 0, $width, $height);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      imagejpeg($dst, $newLoc, 60);
-      break;
-    case 'gif':
-      imagegif($dst, $newLoc);
-      break;
-    case 'png':
-      imagepng($dst, $newLoc, 4);
-      break;
-    default:
-      $src = 'go';
-  }
+  imagejpeg($dst, $newLoc, 60);
   imagedestroy($src);
 }
 
@@ -279,72 +174,20 @@ function miniManipulation($currentImg, $newLoc, $ext){
     }
   }
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      $src = imagecreatefromjpeg($currentImg);
-      break;
-    case 'gif':
-      $src = imagecreatefromgif($currentImg);
-      break;
-    case 'png':
-      $src = imagecreatefrompng($currentImg);
-      break;
-    default:
-      $src = 'go';
-  }
+  $src = imagecreatefromjpeg($currentImg);
 
   $dst = imagecreatetruecolor($thumbWidth, $thumbHeight);
   imagecopyresampled($dst, $src, 0, 0, $left, $top, $thumbWidth, $thumbHeight, $width, $height);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      imagejpeg($dst, $newLoc, 60);
-      break;
-    case 'gif':
-      imagegif($dst, $newLoc);
-      break;
-    case 'png':
-      imagepng($dst, $newLoc, 4);
-      break;
-    default:
-      $src = 'go';
-  }
+  imagejpeg($dst, $newLoc, 60);
 
   $dst = imagecreatetruecolor(35, 35);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      $src = imagecreatefromjpeg($newLoc);
-      break;
-    case 'gif':
-      $src = imagecreatefromgif($newLoc);
-      break;
-    case 'png':
-      $src = imagecreatefrompng($newLoc);
-      break;
-    default:
-      $src = 'go';
-  }
+  $src = imagecreatefromjpeg($newLoc);
 
   imagecopy($dst, $src, 0, 0, 0, 0, $width, $height);
 
-  switch($ext){
-    case 'jpg':
-    case 'jpeg':
-      imagejpeg($dst, $newLoc, 60);
-      break;
-    case 'gif':
-      imagegif($dst, $newLoc);
-      break;
-    case 'png':
-      imagepng($dst, $newLoc, 4);
-      break;
-    default:
-      $src = 'go';
-  }
+  imagejpeg($dst, $newLoc, 60);
   imagedestroy($src);
 }
 

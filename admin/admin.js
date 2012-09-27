@@ -2,9 +2,9 @@ var jQ = jQuery;
 
 jQ(function(){
   jQ('form').submit(function(event){
-    $this = jQ(this);
+    var $this = jQ(this);
 
-    allGood = {};
+    var allGood = {};
     jQ('#imgFilesContainer').find('input').each(function(index){
       index += 1;
       allGood[index] = false;
@@ -17,19 +17,22 @@ jQ(function(){
       if((jQ(this).val().length != 0) && (displayName !== 'display name') && (checked.length != 0)){
         allGood[index] = true;
       }
+
+      console.log(allGood);
+
     });
 
     for(active in allGood){
-      if(allGood){
-        $this.hide();
-        jQ('#loading').show();
-        return true;
+      if(!allGood[active]){
+        var alertTxt = "<p>Something is wrong!<\/p>";
+        jQ('#alerts').html(alertTxt);
+        return false;
       }
     }
 
-    var alertTxt = "<p>Something is wrong!<\/p>";
-    jQ('#alerts').html(alertTxt);
-    return false;
+    $this.hide();
+    jQ('#loading').show();
+    return true;
   });
 
   jQ(document).find('input[type=text]').focus(function(){
